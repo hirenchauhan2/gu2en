@@ -18,5 +18,7 @@ $> ./bin "આ ગુજરાતી ભાષા જેવી સરળતા �
 	}
 
 	text := os.Args[1]
-	fmt.Println(gu2en.Transliterate(text))
+
+	fmt.Println("Original: ", text)
+	fmt.Println("Result: ", gu2en.Transliterate(text))
 }
