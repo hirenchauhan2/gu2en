@@ -32,5 +32,10 @@ func main() {
 
 ## Todo
 
-- [ ] Write tests
-- [ ] Use "m" instead of "n" for diacrit "ં" in certain scenarios such as "ભં" and "અં" and others
+- [x] Write tests
+- [x] Use "m" instead of "n" for diacrit "ં" in certain scenarios such as "ભં" and "અં" and others
+- [ ] Identify or fix transliteration
+- [ ] Add [IPA](https://www.wikiwand.com/en/International_Phonetic_Alphabet) conversion mode
+
+### License
+GPL V3
