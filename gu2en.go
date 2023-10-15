@@ -16,253 +16,81 @@ func replaceArray(a []string, b []string, text string) string {
 	return text
 }
 
+// It generates transliteration of Gujarati Unicode text to English/Roman text.
+//
+// For example, the Gujarati text "ગુજરાતી ભાષા" will be transliterated to "Gujarātī bhāṣhā".
 func Transliterate(text string) string {
-	// Gujarati consonants
-	guj_consonants := []string{
-		"ક",
-		"ખ",
-		"ગ",
-		"ઘ",
-		"ચ",
-		"છ",
-		"જ",
-		"ઝ",
-		"ટ",
-		"ઠ",
-		"ડ",
-		"ઢ",
-		"ણ",
-		"ત",
-		"થ",
-		"દ",
-		"ધ",
-		"ન",
-		"પ",
-		"ફ",
-		"બ",
-		"ભ",
-		"મ",
-		"ય",
-		"ર",
-		"લ",
-		"વ",
-		"શ",
-		"ષ",
-		"સ",
-		"હ",
-		"ળ",
-		"ઞ",
-	}
-
-	// Equivalents for gujarati consonants
-	eng_consonants := []string{
-		"ka",
-		"kha",
-		"ga",
-		"gha",
-		"cha",
-		"chha",
-		"ja",
-		"jha",
-		"ṭa",
-		"ṭha",
-		"ḍa",
-		"ḍha",
-		"ṇa",
-		"ta",
-		"tha",
-		"da",
-		"dha",
-		"na",
-		"pa",
-		"fa",
-		"ba",
-		"bha",
-		"ma",
-		"ya",
-		"ra",
-		"la",
-		"va",
-		"sha",
-		"ṣha",
-		"sa",
-		"ha",
-		"ḷa",
-		"nya",
-	}
-
-	// Gujarati half letters, which would be joined with another character to form
-	// conjunct letters
-	guj_half := []string{
-		"ક્",
-		"ખ્",
-		"ગ્",
-		"ઘ્",
-		"ચ્",
-		"છ્",
-		"જ્",
-		"ઝ્",
-		"ટ્",
-		"ઠ્",
-		"ડ્",
-		"ઢ્",
-		"ણ્",
-		"ત્",
-		"થ્",
-		"દ્",
-		"ધ્",
-		"ન્",
-		"પ્",
-		"ફ્",
-		"બ્",
-		"ભ્",
-		"મ્",
-		"ય્",
-		"ર્",
-		"લ્",
-		"વ્",
-		"શ્",
-		"ષ્",
-		"સ્",
-		"હ્",
-		"ળ્",
-		"ઞ્",
-	}
-
-	// Equivalent characters for gujarati half letters
-	eng_half := []string{
-		"k",
-		"kh",
-		"g",
-		"gh",
-		"ch",
-		"chh",
-		"j",
-		"z",
-		"ṭ",
-		"ṭh",
-		"ḍ",
-		"ḍh",
-		"ṇ",
-		"t",
-		"th",
-		"d",
-		"dh",
-		"n",
-		"p",
-		"f",
-		"b",
-		"bh",
-		"m",
-		"y",
-		"r",
-		"l",
-		"v",
-		"sh",
-		"ṣh",
-		"s",
-		"h",
-		"ḷ",
-		"ny",
-	}
-
-	// Gujarati vowels
-	guj_vowels := []string{"ઓ", "ઔ", "આ", "ઇ", "ઈ", "ઉ", "ઊ", "એ", "ઐ", "ઍ", "ઑ", "ૠ", "અ"}
-
-	// Equivalents for gujarati vowels
-	eng_vowels := []string{
-		"o",
-		"au",
-		"ā",
-		"i",
-		"ī",
-		"u",
-		"ū",
-		"e",
-		"ai",
-		"ĕ",
-		"ŏ",
-		"ṛu",
-		"a",
-	}
-
-	// Gujarati diacrits
-	guj_diacritics := []string{
-		"િ",
-		"ી",
-		"ુ",
-		"ૂ",
-		"ે",
-		"ૈ",
-		"ો",
-		"ૌ",
-		"ૅ",
-		"ૉ",
-		"ં",
-		"ૃ",
-		"્",
-		"ઃ",
-		"ા",
-	}
-
-	// Equivalents for gujarati diacrits
-	eng_diacrits := []string{
-		"i",
-		"ī",
-		"u",
-		"ū",
-		"e",
-		"ai",
-		"o",
-		"au",
-		"ĕ",
-		"ŏ",
-		"an",
-		"ṛu",
-		"",
-		"ah",
-		"ā",
-	}
-
-	// Gujarati digits
-	guj_digits := []string{"૦", "૧", "૨", "૩", "૪", "૫", "૬", "૭", "૮", "૯"}
-
-	// English digits
-	eng_digits := []string{"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"}
-
 	// gujarati consonants and diacrit "ઃ" (h)
 	for i := 0; i < len(guj_consonants); i++ {
 		for j := 0; j < len(guj_diacritics); j++ {
 			pat := regexp.MustCompile(guj_consonants[i] + guj_diacritics[j] + "ઃ ")
-			replacer := eng_half[i] + eng_diacrits[j] + "h" + eng_diacrits[j] + " "
+			replacer := eng_half[i] + eng_diacritics[j] + "h" + eng_diacritics[j] + " "
 			text = pat.ReplaceAllString(text, replacer)
 		}
 	}
+	// check if the text has anusvara in it
+	anusvara_regex := regexp.MustCompile("ં")
+	has_anusvara := anusvara_regex.MatchString(text)
+	if has_anusvara {
+		// replace the combo of consonant + diacrit + anusvara
+		for i := 0; i < len(guj_consonants); i++ {
+			for j := 0; j < len(guj_diacritics); j++ {
+				pat_m := regexp.MustCompile(guj_consonants[i] + guj_diacritics[j] + "ં[મપબભ]")
+				res := pat_m.MatchString(text)
+				if res {
+					pat_m := regexp.MustCompile(guj_consonants[i] + guj_diacritics[j] + "ં")
+					replacer_m := eng_half[i] + eng_diacritics[j] + "m"
+					text = pat_m.ReplaceAllString(text, replacer_m)
+				} else {
+					pat_n := regexp.MustCompile(guj_consonants[i] + guj_diacritics[j] + "ં")
+					replacer_n := eng_half[i] + eng_diacritics[j] + "n"
+					text = pat_n.ReplaceAllString(text, replacer_n)
+				}
+			}
+		}
 
-	for i := 0; i < len(guj_consonants); i++ {
-		for j := 0; j < len(guj_diacritics); j++ {
-			pat := regexp.MustCompile(guj_consonants[i] + guj_diacritics[j] + "ં")
-			replacer := eng_half[i] + eng_diacrits[j] + "n"
-			text = pat.ReplaceAllString(text, replacer)
+		// replace the combo of vowel + anusvara
+		for i := 0; i < len(guj_vowels); i++ {
+			pat_m := regexp.MustCompile(guj_vowels[i] + "ં[મપબભ]")
+			res := pat_m.MatchString(text)
+			if res {
+				pat_m := regexp.MustCompile(guj_vowels[i] + "ં")
+				replacer_m := eng_vowels[i] + "m"
+				text = pat_m.ReplaceAllString(text, replacer_m)
+			} else {
+				pat_n := regexp.MustCompile(guj_vowels[i] + "ં")
+				replacer_n := eng_vowels[i] + "n"
+				text = pat_n.ReplaceAllString(text, replacer_n)
+			}
+		}
+
+		// replace the combo of consonant + anusvara
+		for i := 0; i < len(guj_consonants); i++ {
+			pat_m := regexp.MustCompile(guj_consonants[i] + "ં[મપબભ]")
+			res := pat_m.MatchString(text)
+			if res {
+				pat_m := regexp.MustCompile(guj_consonants[i] + "ં")
+				replacer_m := eng_consonants[i] + "m"
+				text = pat_m.ReplaceAllString(text, replacer_m)
+			} else {
+				pat_n := regexp.MustCompile(guj_consonants[i] + "ં")
+				replacer_n := eng_consonants[i] + "n"
+				text = pat_n.ReplaceAllString(text, replacer_n)
+			}
 		}
 	}
 
-	for i := 0; i < len(guj_vowels); i++ {
-		pat := regexp.MustCompile(guj_vowels[i] + "ં")
-		replacer := eng_vowels[i] + "n"
-		text = pat.ReplaceAllString(text, replacer)
-	}
-
+	// replace the combo of consonant + diacrit
 	for i := 0; i < len(guj_consonants); i++ {
 		for j := 0; j < len(guj_diacritics); j++ {
 			pat := regexp.MustCompile(guj_consonants[i] + guj_diacritics[j])
-			replacer := eng_half[i] + eng_diacrits[j]
+			replacer := eng_half[i] + eng_diacritics[j]
 			text = pat.ReplaceAllString(text, replacer)
 		}
 	}
 
 	text = replaceArray(guj_half, eng_half, text)
-	text = replaceArray(guj_diacritics, eng_diacrits, text)
+	text = replaceArray(guj_diacritics, eng_diacritics, text)
 	text = replaceArray(guj_vowels, eng_vowels, text)
 	text = replaceArray(guj_consonants, eng_consonants, text)
 	text = replaceArray(guj_digits, eng_digits, text)
@@ -283,106 +111,12 @@ func Transliterate(text string) string {
 		}
 	}
 
-	eng_comb := []string{
-		"kh",
-		"gh",
-		"ch",
-		"chh",
-		"ṭh",
-		"ḍh",
-		"th",
-		"dh",
-		"bh",
-		"sh",
-		"ṣh",
-		"ny",
-	}
-
 	for i := 0; i < len(eng_vowels); i++ {
 		for j := 0; j < len(eng_comb); j++ {
 			pat := regexp.MustCompile(eng_vowels[i] + eng_comb[j] + "a ")
 			replacer := eng_vowels[i] + eng_comb[j] + " "
 			text = pat.ReplaceAllString(text, replacer)
 		}
-	}
-
-	lowercase_alphabets := []string{
-		"a",
-		"b",
-		"c",
-		"d",
-		"e",
-		"f",
-		"g",
-		"h",
-		"i",
-		"j",
-		"k",
-		"l",
-		"m",
-		"n",
-		"o",
-		"p",
-		"q",
-		"r",
-		"s",
-		"t",
-		"u",
-		"v",
-		"w",
-		"x",
-		"y",
-		"z",
-		"ā",
-		"ḍ",
-		"ĕ",
-		"ī",
-		"ḷ",
-		"ṇ",
-		"ŏ",
-		"ṛ",
-		"ṣ",
-		"ṭ",
-		"ū",
-	}
-	uppercase_alphabets := []string{
-		"A",
-		"B",
-		"C",
-		"D",
-		"E",
-		"F",
-		"G",
-		"H",
-		"I",
-		"J",
-		"K",
-		"L",
-		"M",
-		"N",
-		"O",
-		"P",
-		"Q",
-		"R",
-		"S",
-		"T",
-		"U",
-		"V",
-		"W",
-		"X",
-		"Y",
-		"Z",
-		"Ā",
-		"Ḍ",
-		"Ĕ",
-		"Ī",
-		"Ḷ",
-		"Ṇ",
-		"Ŏ",
-		"Ṛ",
-		"Ṣ",
-		"Ṭ",
-		"Ū",
 	}
 
 	//capitalize first word in sentence
