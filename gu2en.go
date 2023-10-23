@@ -24,7 +24,7 @@ func Transliterate(text string) string {
 	for i := 0; i < len(guj_consonants); i++ {
 		for j := 0; j < len(guj_diacritics); j++ {
 			pat := regexp.MustCompile(guj_consonants[i] + guj_diacritics[j] + "ઃ ")
-			replacer := eng_half[i] + eng_diacritics[j] + "h" + eng_diacritics[j] + " "
+			replacer := eng_halant[i] + eng_diacritics[j] + "h" + eng_diacritics[j] + " "
 			text = pat.ReplaceAllString(text, replacer)
 		}
 	}
@@ -39,11 +39,11 @@ func Transliterate(text string) string {
 				res := pat_m.MatchString(text)
 				if res {
 					pat_m := regexp.MustCompile(guj_consonants[i] + guj_diacritics[j] + "ં")
-					replacer_m := eng_half[i] + eng_diacritics[j] + "m"
+					replacer_m := eng_halant[i] + eng_diacritics[j] + "m"
 					text = pat_m.ReplaceAllString(text, replacer_m)
 				} else {
 					pat_n := regexp.MustCompile(guj_consonants[i] + guj_diacritics[j] + "ં")
-					replacer_n := eng_half[i] + eng_diacritics[j] + "n"
+					replacer_n := eng_halant[i] + eng_diacritics[j] + "n"
 					text = pat_n.ReplaceAllString(text, replacer_n)
 				}
 			}
@@ -84,12 +84,12 @@ func Transliterate(text string) string {
 	for i := 0; i < len(guj_consonants); i++ {
 		for j := 0; j < len(guj_diacritics); j++ {
 			pat := regexp.MustCompile(guj_consonants[i] + guj_diacritics[j])
-			replacer := eng_half[i] + eng_diacritics[j]
+			replacer := eng_halant[i] + eng_diacritics[j]
 			text = pat.ReplaceAllString(text, replacer)
 		}
 	}
 
-	text = replaceArray(guj_half, eng_half, text)
+	text = replaceArray(guj_halant, eng_halant, text)
 	text = replaceArray(guj_diacritics, eng_diacritics, text)
 	text = replaceArray(guj_vowels, eng_vowels, text)
 	text = replaceArray(guj_consonants, eng_consonants, text)
@@ -97,15 +97,15 @@ func Transliterate(text string) string {
 
 	for i := 0; i < len(eng_consonants); i++ {
 		pat := regexp.MustCompile(eng_consonants[i] + " ")
-		replacer := eng_half[i] + " "
+		replacer := eng_halant[i] + " "
 
 		text = pat.ReplaceAllString(text, replacer)
 	}
 
-	for i := 0; i < len(eng_half); i++ {
+	for i := 0; i < len(eng_halant); i++ {
 		for j := 0; j < len(eng_consonants); j++ {
-			pat := regexp.MustCompile(eng_half[i] + eng_half[j] + " ")
-			replacer := eng_half[i] + eng_consonants[j] + " "
+			pat := regexp.MustCompile(eng_halant[i] + eng_halant[j] + " ")
+			replacer := eng_halant[i] + eng_consonants[j] + " "
 
 			text = pat.ReplaceAllString(text, replacer)
 		}

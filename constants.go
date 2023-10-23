@@ -74,9 +74,9 @@ var eng_consonants = []string{
 	"nya",
 }
 
-// Half form of Gujarati consonants, which would be joined with another character to form
+// Halant form of Gujarati consonants, which would be joined with another character to form
 // conjunct letters
-var guj_half = []string{
+var guj_halant = []string{
 	"ક્",
 	"ખ્",
 	"ગ્",
@@ -112,8 +112,8 @@ var guj_half = []string{
 	"ઞ્",
 }
 
-// Equivalent characters for gujarati half letters
-var eng_half = []string{
+// Equivalent characters for gujarati halant letters
+var eng_halant = []string{
 	"k",
 	"kh",
 	"g",
