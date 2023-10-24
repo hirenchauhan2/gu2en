@@ -1,0 +1,32 @@
+name: Node
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Nodejs
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: "js/.nvmrc"
+          cache: "npm"
+          cache-dependency-path: js/package-lock.json
+      
+      - name: Install deps
+        run: cd js && npm ci
+
+      - name: Lint
+        run: cd js && npm run lint
+
+      - name: Build
+        run: cd js && npm run build
+
+      # - name: Test
+      #   run: cd js && npm run test

@@ -1,0 +1,41 @@
+{
+  "name": "gu-en",
+  "version": "1.0.0",
+  "description": "Transliterate gujarati unicode text to english/roman letters",
+  "main": "dist/gu2en.cjs.js",
+  "module": "dist/gu2en.esm.js",
+  "browser": "dist/gu2en.umd.min.js",
+  "devDependencies": {
+    "@rollup/plugin-commonjs": "25.0.7",
+    "@rollup/plugin-eslint": "9.0.5",
+    "@rollup/plugin-terser": "0.4.4",
+    "eslint": "^8.52.0",
+    "eslint-config-prettier": "^9.0.0",
+    "prettier": "3.0.3",
+    "rollup": "4.1.4 "
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "test": "ts-node test/test.ts",
+    "pretest": "npm run build",
+    "format:check": "prettier . --check",
+    "format:write": "prettier . --write",
+    "lint": "eslint ./src",
+    "lint:fix": "eslint ./src --fix"
+  },
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "keywords": [
+    "transliteration",
+    "gujarati",
+    "gujarati-language",
+    "transliterate",
+    "indic-language",
+    "gu2en"
+  ],
+  "author": "Hiren Chauhan",
+  "license": "ISC"
+}
