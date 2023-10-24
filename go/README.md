@@ -21,7 +21,7 @@ package main
 import (
 	"fmt"
 
-	"github.com/hirenchauhan2/gu2en"
+	gu2en "github.com/hirenchauhan2/gu2en/go"
 )
 
 func main() {
@@ -36,6 +36,7 @@ func main() {
 - [x] Use "m" instead of "n" for diacrit "ં" in certain scenarios such as "ભં" and "અં" and others
 - [ ] Identify or fix transliteration
 - [ ] Add [IPA](https://www.wikiwand.com/en/International_Phonetic_Alphabet) conversion mode
+- [ ] Add normal english characters mode for better readability conversions (Gujlish) text
 
 ### License
 GPL V3

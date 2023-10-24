@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/hirenchauhan2/gu2en"
+	gu2en "github.com/hirenchauhan2/gu2en/go"
 )
 
 func main() {

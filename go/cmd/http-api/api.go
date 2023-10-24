@@ -6,7 +6,7 @@ import (
 	"log"
 	"net/http"
 
-	"github.com/hirenchauhan2/gu2en"
+	gu2en "github.com/hirenchauhan2/gu2en/go"
 )
 
 type Message struct {
