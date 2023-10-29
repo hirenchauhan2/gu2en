@@ -11,7 +11,7 @@ const config = [
     plugins: [eslint(), commonjs()],
     output: [
       {
-        file: 'dist/gu2en.cjs.js',
+        file: 'dist/gu2en.cjs',
         format: 'cjs',
       },
       {
