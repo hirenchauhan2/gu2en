@@ -44,7 +44,7 @@ var eng_consonants = []string{
 	"ga",
 	"gha",
 	"cha",
-	"chha",
+	"chh",
 	"ja",
 	"jha",
 	"ṭa",
